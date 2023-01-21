@@ -4,9 +4,21 @@ import styles from "@/styles/Home.module.css";
 import Banner from "@/components/Banner/Banner";
 import Navbar from "@/components/Navbar/Navbar";
 import Card from "@/components/Card/Card"
+import SectionCards from "@/components/Card/SectionCard";
 
 
 export default function Home() {
+  const disneyVideos = [
+    {
+      imgUrl: "/static/clifford.webp",
+    },
+    {
+      imgUrl: "/static/clifford.webp",
+    },
+    {
+      imgUrl: "/static/clifford.webp",
+    },
+  ];
   return (
     <>
       <Head>
@@ -21,9 +33,11 @@ export default function Home() {
         subTitle="a very cute dog"
         imgUrl="/static/clifford.webp"
       />
-      <Card imgUrl="/static/clifford.webp" size="large" />
-      <Card size="medium" />
-      <Card imgUrl="/static/clifford.webp" size="small" />
+
+      <div className={styles.sectionWrapper}>
+        <SectionCards title="Disney" videos={disneyVideos} size="large" />
+        <SectionCards title="Disney" videos={disneyVideos} size="medium" />
+      </div>
     </>
   );
 }
