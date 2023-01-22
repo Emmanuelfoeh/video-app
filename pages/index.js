@@ -3,22 +3,34 @@ import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import Banner from "@/components/Banner/Banner";
 import Navbar from "@/components/Navbar/Navbar";
-import Card from "@/components/Card/Card"
 import SectionCards from "@/components/Card/SectionCard";
 
+import { getPopularVideos, getVideos } from "../lib/videoApi";
 
-export default function Home() {
-  const disneyVideos = [
-    {
-      imgUrl: "/static/clifford.webp",
-    },
-    {
-      imgUrl: "/static/clifford.webp",
-    },
-    {
-      imgUrl: "/static/clifford.webp",
-    },
-  ];
+
+
+export async function getServerSideProps(){
+  const disneyVideos = await getVideos("disney trailer");
+  const productivityVideos = await getVideos('productivity');
+  const travelVideos = await getVideos('Ghana music')
+  const popularVideos = await getPopularVideos();
+  // const popularVideos = await getVideos('pupolar'), )
+  return {
+    props: { disneyVideos, productivityVideos, travelVideos,popularVideos },
+  };
+}
+
+
+export default function Home(props) {
+
+  const { disneyVideos, productivityVideos, travelVideos, popularVideos } =
+    props;
+  console.log({
+    disney: disneyVideos,
+    product: productivityVideos,
+    travel: travelVideos,
+    popular: popularVideos,
+  });
   return (
     <>
       <Head>
@@ -27,7 +39,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar username={"emmanuelfo"} />
+       <div className={styles.main}>
+         <Navbar username={"emmanuelfo"} />
       <Banner
         title="Clifford the red dog"
         subTitle="a very cute dog"
@@ -36,8 +49,18 @@ export default function Home() {
 
       <div className={styles.sectionWrapper}>
         <SectionCards title="Disney" videos={disneyVideos} size="large" />
-        <SectionCards title="Disney" videos={disneyVideos} size="medium" />
+
+        <SectionCards
+          title="Productivity"
+          videos={productivityVideos}
+          size="medium"
+        />
+        <SectionCards title="Travel" videos={travelVideos} size="small" />
+
+        <SectionCards title="Popular" videos={popularVideos} size="small" />
       </div>
+       </div>
+     
     </>
   );
 }
