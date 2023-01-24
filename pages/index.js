@@ -40,7 +40,7 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
        <div className={styles.main}>
-         <Navbar username={"emmanuelfo"} />
+         <Navbar />
       <Banner
         title="Clifford the red dog"
         subTitle="a very cute dog"
