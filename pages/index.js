@@ -39,28 +39,28 @@ export default function Home(props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-       <div className={styles.main}>
-         <Navbar />
-      <Banner
-        title="Clifford the red dog"
-        subTitle="a very cute dog"
-        imgUrl="/static/clifford.webp"
-      />
-
-      <div className={styles.sectionWrapper}>
-        <SectionCards title="Disney" videos={disneyVideos} size="large" />
-
-        <SectionCards
-          title="Productivity"
-          videos={productivityVideos}
-          size="medium"
+      <div className={styles.main}>
+        <Navbar />
+        <Banner
+          videoId="4zH5iYM4wJo"
+          title="Clifford the red dog"
+          subTitle="a very cute dog"
+          imgUrl="/static/clifford.webp"
         />
-        <SectionCards title="Travel" videos={travelVideos} size="small" />
 
-        <SectionCards title="Popular" videos={popularVideos} size="small" />
+        <div className={styles.sectionWrapper}>
+          <SectionCards title="Disney" videos={disneyVideos} size="large" />
+
+          <SectionCards
+            title="Productivity"
+            videos={productivityVideos}
+            size="medium"
+          />
+          <SectionCards title="Travel" videos={travelVideos} size="small" />
+
+          <SectionCards title="Popular" videos={popularVideos} size="small" />
+        </div>
       </div>
-       </div>
-     
     </>
   );
 }
